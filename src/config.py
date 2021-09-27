@@ -11,7 +11,7 @@ parser.read(ARRANGE_FILE)
 
 
 def api_config(section):
-    """Validate section. Return list ulrs"""
+    """Parse api config params. Return list ulrs"""
 
     params = parser.options(section)
 
@@ -19,7 +19,7 @@ def api_config(section):
 
 
 def db_config(section):
-    """Set and creates connection with psql db. Returns dict with config fields."""
+    """Parse all config params required for db. Returns dict with config fields."""
 
     params = parser.options(section)
     params_dict = {}

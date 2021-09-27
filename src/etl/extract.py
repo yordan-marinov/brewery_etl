@@ -7,7 +7,7 @@ from src import config
 
 def extract_api(section):
     url_list = config.api_config(section)
-    api_response = requests.get(url_list[0])
+    api_response = requests.get(url_list[0])  # Using the first url from list of five
     json_obj = json.loads(api_response.text)
 
     return json_obj
