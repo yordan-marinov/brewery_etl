@@ -1,7 +1,5 @@
 # CREATE and INSERT into db table.
 
-import json
-import requests
 import psycopg2
 from psycopg2.extras import execute_values
 from src import config

@@ -1,5 +1,4 @@
 from etl import extract, transform, load
-import pprint
 
 
 def main():
