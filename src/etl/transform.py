@@ -1,14 +1,35 @@
-# Transforms raw data with give params.
+# Transforms raw data .
 
 
-def modify(raw_data: list, fields: tuple):
-    """New json obj with given fields. Returns list of json."""
+def date_format(date_str):
+    """Formats date to yyyy-mm-dd. Returns date as string"""
 
-    modified_data = []
-    for item in raw_data:
-        current_item = {}
-        for field in fields:
-            current_item[field] = item[field]
-        modified_data.append(current_item)
+    # The day in row data is not supplied
+    day = '01'
+    split_date = date_str.split('/')
+    # When month is not supplied
+    if len(split_date) < 2:
+        month, year = '01', split_date[0]
+    else:
+        month, year = split_date
 
-    return modified_data
+    return f'{year}-{month}-{day}'
+
+
+def modify(raw_data, fields):
+    """Generator modify raw data. Yield dict"""
+
+    while True:
+        try:
+            dict_item = next(raw_data)
+            current_item = {}
+            for field in fields:
+                if field == 'first_brewed':
+                    new_date = date_format(dict_item[field])
+                    current_item[field] = new_date
+                else:
+                    current_item[field] = dict_item[field]
+
+            yield current_item
+        except StopIteration:
+            break
