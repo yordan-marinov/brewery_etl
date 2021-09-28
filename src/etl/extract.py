@@ -6,10 +6,9 @@ from src import config
 
 
 def extract_api(section):
-    """Iterator yield single json obj at time."""
+    """Generate raw lager data. Yield single json at the time."""
 
     url_list = config.api_config(section)
-
     for url in url_list:
         api_response = requests.get(url)
         json_obj_list = json.loads(api_response.text)
